@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.16'
+    }
+}
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+    id 'application'
+    id 'com.google.protobuf' version '0.8.16'
+    id 'idea'
+}
+
+group = 'me.sd'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    implementation "com.google.protobuf:protobuf-kotlin:3.17.3"
+    implementation "de.m3y.kformat:kformat:0.7"
+}
+
+test {
+    useJUnit()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '13'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '13'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.17.3"
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                kotlin {}
+                java {}
+            }
+        }
+    }
+}
+
+application {
+    mainClassName = 'MainKt'
+}

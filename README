@@ -1,0 +1,6 @@
+Implementation of a column striping algorithm described in [Melnik, Sergey, et al. "Dremel:
+interactive analysis of web-scale datasets." Proceedings of the VLDB Endowment 3.1-2 (2010):
+330-339]
+
+Inspired by https://warrenqi.github.io/2021/04/29/dremel-original.html
+.
